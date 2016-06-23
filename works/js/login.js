@@ -33,7 +33,7 @@ avalon.ready(function () {
         login: function () {
             if (validator.form()) {
                 $.ajax({
-                    url: "/cm/admin/user/login",
+                    url: "/his/admin/user/login",
                     type: "POST",
                     dataType: 'json',
                     beforeSend: function () {
@@ -58,11 +58,12 @@ avalon.ready(function () {
                             }
                             layer.alert("登录成功", {icon: 1});
                             window.setTimeout(function () {//1.2秒后自动跳转
-                                if (result.bizData.userTypes == 1) {  //只有普通用户身份，直接跳转至PC端
-                                    window.location.href = "/";
-                                } else {//具有多种用户身份
-                                    window.location.href = "/html/role.html";
-                                }
+                                //if (result.bizData.userTypes == 1) {  //只有普通用户身份，直接跳转至PC端
+                                //    window.location.href = "/";
+                                //} else {//具有多种用户身份
+                                //    window.location.href = "/html/role.html";
+                                //}
+                                window.location.href = "/index.html";
                             }, 1200);
 
                         } else {
