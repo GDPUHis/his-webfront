@@ -20,20 +20,20 @@ $(function () {
 
     var vm = avalon.define({
         $id: 'editCategory',
-        category: {id: CMADMIN.getParam("id"), name: "", createDate: "", priority: null, type: null},
+        category: {id: ROOT.getParam("id"), name: "", createDate: "", priority: null, type: null},
         type: [],
         //回显示查询
         queryOne: function () {
-            //vm.category.id = CMADMIN.getParam("id");
+            //vm.category.id = ROOT.getParam("id");
             $.ajax({
-                url: '/cm/admin/category/queryOne?id='+vm.category.id,
+                url: '/his/admin/category/queryOne?id='+vm.category.id,
                 dataType: 'json',
                 type: 'get',
                 beforeSend: function () {
-                    CMADMIN.openLoading();
+                    ROOT.openLoading();
                 },
                 complete: function () {
-                    CMADMIN.closeLoading();
+                    ROOT.closeLoading();
                 },
                 success: function (result) {
                     if (isSuccess(result)){
@@ -51,20 +51,20 @@ $(function () {
         save: function () {
             if (validator.form()) {
                 $.ajax({
-                    url: "/cm/admin/category/update",
+                    url: "/his/admin/category/update",
                     type: "POST",
                     dataType: 'json',
                     beforeSend: function () {
-                        CMADMIN.openLoading();
+                        ROOT.openLoading();
                     },
                     complete: function () {
-                        CMADMIN.closeLoading();
+                        ROOT.closeLoading();
                     },
                     data: $("#updateForm").serialize(),
                     success: function (result) {
                         if (isSuccess(result)) {
                             layer.alert(result.bizData, {icon: 1});
-                            CMADMIN.closeDialog();
+                            ROOT.closeDialog();
                         } else {
                             layer.alert(result.msg, {icon: 2});
                         }
@@ -75,7 +75,7 @@ $(function () {
 
 
         back: function () {
-            CMADMIN.cancelDialog();
+            ROOT.cancelDialog();
         }
 
 

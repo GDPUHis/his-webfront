@@ -43,7 +43,7 @@ ace.load_ajax_scripts(scripts, function () {
                 data += "&pageNo=" + vm.pageNo;
                 data += "&pageSize=" + vm.pageSize;
                 $.ajax({
-                    url: '/cm/admin/category/queryPage',
+                    url: '/his/admin/category/queryPage',
                     dataType: 'json',
                     type: 'post',
                     data: data,
@@ -144,7 +144,7 @@ ace.load_ajax_scripts(scripts, function () {
             deleteOne: function (id) {
                 layer.confirm('确定要删除该分类？', {icon: 2}, function (index) {
                     $.ajax({
-                        url: "/cm/admin/category/deleteOne?id=" + id,
+                        url: "/his/admin/category/deleteOne?id=" + id,
                         type: "GET",
                         dataType: "json",
                         beforeSend: function () {
@@ -172,7 +172,7 @@ ace.load_ajax_scripts(scripts, function () {
                 var icon = flag === 1 ? 5 : 6
                 layer.confirm('确定要' + action + '该分类！', {icon: icon}, function (index) {
                     $.ajax({
-                        url: "/cm/admin/category/disableOrEnable?id=" + id + "&status=" + status,
+                        url: "/his/admin/category/disableOrEnable?id=" + id + "&status=" + status,
                         type: "GET",
                         dataType: "json",
                         beforeSend: function () {
@@ -227,6 +227,6 @@ ace.load_ajax_scripts(scripts, function () {
             }
         });
         avalon.scan($("#listCategory")[0], vm);
-        //vm.init();
+        vm.init();
     });
 });

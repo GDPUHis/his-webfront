@@ -25,20 +25,20 @@ $(function () {
         save: function () {
             if (validator.form()) {
                 $.ajax({
-                    url: "/cm/admin/category/add",
+                    url: "/his/admin/category/add",
                     type: "POST",
                     dataType: 'json',
                     beforeSend: function () {
-                        CMADMIN.openLoading();
+                        ROOT.openLoading();
                     },
                     complete: function () {
-                        CMADMIN.closeLoading();
+                        ROOT.closeLoading();
                     },
                     data: $("#addForm").serialize(),
                     success: function (result) {
                         if (isSuccess(result)) {
                             layer.alert(result.bizData, {icon: 1});
-                            CMADMIN.closeDialog();
+                            ROOT.closeDialog();
                         } else {
                             layer.alert(result.msg, {icon: 2});
                         }
@@ -48,7 +48,7 @@ $(function () {
         },
 
         back: function () {
-            CMADMIN.cancelDialog();
+            ROOT.cancelDialog();
         }
     });
     avalon.scan($("#addCategory")[0], vm);

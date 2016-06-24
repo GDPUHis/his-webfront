@@ -4,9 +4,9 @@
 /**
  * 全局变量*/
 var ACCESS_TOKEN = "access_token";
+var categoryType = ["设备", "附件", "合同"];
 var roleNames = ["普通用户", "科室负责人", "管理员", "超级管理员"];
 var CURRENTUSER = "CURRENTUSER";
-var CURRENTSHOP = "CURRENTSHOP";
 
 /** 产生guid *
  * @return {string}
@@ -264,17 +264,7 @@ function closeAllTip() {
 }
 /** 过滤器 **/
 avalon.filters.categoryTypeFilter = function (value, args, args2) {
-    var str = "";
-    if (value == 1) {
-        str = categoryType[0];
-    } else if (value == 2) {
-        str = categoryType[1];
-    } else if (value == 4) {
-        str = categoryType[2];
-    } else {
-        str = categoryType[3];
-    }
-    return str;
+    return categoryType[(Math.log(value)) / (Math.log(2))];
 };
 avalon.filters.userTypeFilter = function (value) {
     var index = (Math.log(value)) / (Math.log(2));
