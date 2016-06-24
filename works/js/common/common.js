@@ -1,9 +1,12 @@
 /**
  * Created by 郭旭辉 on 2016/4/13.
  */
+/**
+ * 全局变量*/
 var ACCESS_TOKEN = "access_token";
-
-/** 分类**/
+var roleNames = ["普通用户", "科室负责人", "管理员", "超级管理员"];
+var CURRENTUSER = "CURRENTUSER";
+var CURRENTSHOP = "CURRENTSHOP";
 
 /** 产生guid *
  * @return {string}
@@ -43,52 +46,52 @@ function isSuccess(result) {
     }
     return false;
 }
-//打开loading
-openLoading = function () {
-    layer.load(2);
-};
-//关闭loading
-closeLoading = function () {
-    layer.closeAll('loading');
-};
-//读取参数
-getParam = function (name) {
-    return JSON.parse($(".layui-layer-content #param").val())[name];
-};
-//打开弹窗
-htmlRoot = '/html',
-index = 0;//记录弹窗
-openDialog = function (url, data, title, width, height, callBack) {
-    $.get(htmlRoot + url, {}, function (html) {
-        var str = JSON.stringify(data);
-        var hidden = "<input id='param' type='hidden' value='" + str + "' />";
-        var area = [width, height];
-        if (height == 'auto') {
-            area = width;
-        }
-        index = layer.open({
-            type: 1,
-            title: title,
-            shift: 2,
-            moveEnd: function () {
-                closeAllTip();
-            },
-            cancel: function () {
-                //取消时重置回调，避免刷新
-                callBack = function () {
-                };
-            },
-            end: function () {
-                closeAllTip();
-                //为了保存后刷新
-                callBack();
-            },
-            shadeClose: false,
-            content: html + hidden,
-            area: area
-        });
-    });
-};
+////打开loading
+//openLoading = function () {
+//    layer.load(2);
+//};
+////关闭loading
+//closeLoading = function () {
+//    layer.closeAll('loading');
+//};
+////读取参数
+//getParam = function (name) {
+//    return JSON.parse($(".layui-layer-content #param").val())[name];
+//};
+////打开弹窗
+//htmlRoot = '/html',
+//index = 0;//记录弹窗
+//openDialog = function (url, data, title, width, height, callBack) {
+//    $.get(htmlRoot + url, {}, function (html) {
+//        var str = JSON.stringify(data);
+//        var hidden = "<input id='param' type='hidden' value='" + str + "' />";
+//        var area = [width, height];
+//        if (height == 'auto') {
+//            area = width;
+//        }
+//        index = layer.open({
+//            type: 1,
+//            title: title,
+//            shift: 2,
+//            moveEnd: function () {
+//                closeAllTip();
+//            },
+//            cancel: function () {
+//                //取消时重置回调，避免刷新
+//                callBack = function () {
+//                };
+//            },
+//            end: function () {
+//                closeAllTip();
+//                //为了保存后刷新
+//                callBack();
+//            },
+//            shadeClose: false,
+//            content: html + hidden,
+//            area: area
+//        });
+//    });
+//};
 // 登出
 function logout() {
     layer.confirm("您确定要登出？", {icon: 5, title: "注销"}, function (index) {
